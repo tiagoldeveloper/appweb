@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+		</f:facet>
+		<title>Selecione um produto</title>
+	</h:head>
+	<h:body onload="putFocus(0,0);">
+		<div class="ContainerIndent ui-fluid">
+			<p:fieldset style="margin-top: 10px">
+				<h:form>
+					<div class="Container">
+						<div class="Container90 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:inputText id="nome" value="#{produtoConMB.pesquisa}" placeholder="Informe nome da pessoa" />
+								</div>
+							</div>
+						</div>
+						<div class="Container10 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:commandButton value="Pesquisar" action="#{produtoConMB.recuperaProdutos}" update="@form"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="Container">
+						<div class="Container100 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:dataTable value="#{produtoConMB.produtos}" var="produto" emptyMessage="Nenhum produto encontrado." rows="10"
+							    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+										<p:column headerText="Código">
+											<h:outputText value="#{produto.id}" />
+										</p:column>
+										<p:column headerText="Nome">
+											<h:outputText value="#{produto.descricao}" />
+										</p:column>
+										<p:column style="width: 30px; text-align: center">
+											<p:commandButton icon="fa  fa-fw  fa-check" title="Selecionar"
+						    				action="#{manutencaoProdutoManMB.selecionar(produto)}"
+						    				process="@this" />
+										</p:column>
+									</p:dataTable>
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</p:fieldset>
+		</div>
+		<h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout" />
+		<h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout" />
+		<h:outputStylesheet name="css/core-layout.css" library="sentinel-layout" />
+	</h:body>
+</html>

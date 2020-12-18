@@ -1,0 +1,50 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+    template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="content">
+		<style type="text/css">
+            .ui-panel {
+                margin-top:60px
+            }
+            .inlineCalendarDemo > .hasDatepicker {
+                padding-left: 50px;
+            }
+        </style>
+		<div class="ContainerIndent ui-fluid">
+			<p:fieldset legend="Cadastrar pessoas" id="fildcliente" style="margin-top: 60px">
+				<div class="Container">
+					<div class="Container50 Responsive50">
+						<div class="ContainerIndent">
+							<h:outputText value="InputText" styleClass="FontBold Fs18 hardblue"></h:outputText>
+						</div>
+						<div class="Container100">
+							<p:panelGrid columns="3" layout="grid" style="border:0px !important; background:none;" styleClass="ui-panelgrid-blank">
+								<p:inputText placeholder="Name"/>
+								<p:inputText placeholder="Email"/>
+								<p:inputText placeholder="Phone"/>
+								<p:inputText placeholder="Disabled Input" disabled="true"/>
+								<p:inputText placeholder="Address"/>
+								<p:inputText placeholder="Id"/>
+							</p:panelGrid>
+						</div>
+					</div>
+					<div class="Container50 Responsive50">
+						<div class="ContainerIndent">
+							<h:outputText value="Textarea" styleClass="FontBold Fs18 hardblue"></h:outputText>
+						</div>
+						<div class="Container100">
+							<div class="ContainerIndent">
+								<p:inputTextarea rows="5" placeholder="Textarea"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+		</div>
+	</ui:define>
+</ui:composition>

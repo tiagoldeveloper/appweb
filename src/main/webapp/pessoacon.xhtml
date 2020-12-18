@@ -1,0 +1,111 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+    template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="content">
+		<div class="ContainerIndent ui-fluid">
+			<p:fieldset legend="Lista de Pessoas" style="margin-top: 60px">
+				<h:form id="frmpesquisa">
+					<div class="Container">
+						<div class="Container80 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:inputText title="Entre com nome ou código" placeholder="Entre com nome ou código" value="#{pessoaConMB.pesquisa}"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container10 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:commandButton value="Pesquisar" action="#{pessoaConMB.carregaPessoas}" update="frm, frmpesquisa" icon="fa  fa-fw  fa-search"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container10 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:button value="+"  outcome="pessoaman"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+				<div class="Container">
+					<div class="Container100 Responsive50">
+						<div class="ContainerIndent">
+							<div class="Container100">
+								<h:form id="frm">
+									<p:dataTable id="pessoa" var="pessoa" value="#{pessoaConMB.pessoas}"
+				                                     rows="5" paginator="true" paginatorTemplate="{CurrentPageReport}  
+				                                     {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				                                     rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"  emptyMessage="Nenhuma pessoa encontrado" 
+				                                     paginatorAlwaysVisible="true" reflow="true">
+										<p:column headerText="Código" sortBy="#{pessoa.id}" width="80">
+											<h:outputText value="#{pessoa.id}" />
+										</p:column>
+										<p:column headerText="Nome" sortBy="#{pessoa.nome}">
+											<h:outputText value="#{pessoa.nome}" />
+										</p:column>
+										<p:column headerText="Telefone" width="120">
+											<h:outputText value="#{pessoa.telefone}" />
+										</p:column>
+										<p:column headerText="Celular" width="120">
+											<h:outputText value="#{pessoa.celular}" />
+										</p:column>
+										<p:column headerText="Email">
+											<h:outputText value="#{pessoa.email}" />
+										</p:column>
+										<p:column style="width: 60px">
+											<p:button outcome="pessoaman" icon="fa  fa-fw fa-pencil" title="Editar" styleClass="background: white">
+												<f:param name="id" value="#{pessoa.id}"/>
+											</p:button>
+										</p:column>
+										<p:column style="width: 60px">
+											<p:commandButton title="Excluir" oncomplete="PF('removerpessoa').show()" process="@this" update="frm" icon="fa  fa-fw fa-trash">
+												<f:setPropertyActionListener   value="#{pessoa}" target="#{pessoaConMB.pessoa}"/>
+											</p:commandButton>
+										</p:column>
+										<f:facet name="footer">
+                               			Total de pessoa(s) cadastrado(s) #{pessoaConMB.pessoas.size()}
+                     			 </f:facet>
+									</p:dataTable>
+									<p:dialog header="Deseja excluir pessoa:" id="removerpessoa" widgetVar="removerpessoa" width="350" height="100">
+										<div class="Container">
+											<div class="Container100 Responsive50">
+												<div class="ContainerIndent">
+													<div class="Container100">
+														<p:outputLabel id="idNome" value="#{pessoaConMB.pessoa.nome}"/>
+														<hr/>
+													</div>
+												</div>
+											</div>
+											<div class="Container50 Responsive50">
+												<div class="ContainerIndent">
+													<div class="Container100">
+														<p:button value="Não" onclick="PF('removerpessoa').hide(); return false;" />
+													</div>
+												</div>
+											</div>
+											<div class="Container50 Responsive50">
+												<div class="ContainerIndent">
+													<div class="Container100">
+														<p:commandButton value="Sim" action="#{pessoaConMB.remove}" update="frm,pessoa"  onclick="PF('removerpessoa').hide()"/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</p:dialog>
+									<div class="EmptyBox20"></div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+		</div>
+	</ui:define>
+</ui:composition>

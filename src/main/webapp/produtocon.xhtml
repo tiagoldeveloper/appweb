@@ -1,0 +1,110 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+    template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="content">
+		<div class="ContainerIndent ui-fluid">
+			<p:fieldset legend="Produtos" style="margin-top: 60px">
+				<h:form id="frmpesquisa">
+					<div class="Container">
+						<div class="Container80 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:inputText title="Entre com a descricão" placeholder="Entre com a descricão ou código" value="#{produtoConMB.pesquisa}"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container10 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:commandButton value="Pesquisar" action="#{produtoConMB.recuperaProdutos}" update="frm, frmpesquisa" icon="fa  fa-fw  fa-search"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container10 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:button value="+" outcome="produtoman"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+				<div class="Container">
+					<div class="Container100 Responsive50">
+						<div class="ContainerIndent">
+							<div class="Container100">
+								<h:form id="frm">
+									<p:dataTable id="produto" var="produto" value="#{produtoConMB.produtos}"
+	                                     rows="5" paginator="true" paginatorTemplate="{CurrentPageReport}  
+	                                     {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                                     rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"  emptyMessage="Nenhum produto encontrado" 
+	                                     paginatorAlwaysVisible="true" reflow="true">
+										<p:column headerText="Código" sortBy="#{produto.id}">
+											<h:outputText value="#{produto.id}" />
+										</p:column>
+										<p:column headerText="Descrição" sortBy="#{produto.descricao}">
+											<h:outputText value="#{produto.descricao}" />
+										</p:column>
+										<p:column headerText="Quantidade" sortBy="#{produto.quantidade}">
+											<h:outputText value="#{produto.quantidade}" />
+										</p:column>
+										<p:column headerText="Preço" sortBy="#{produto.preco}">
+											<h:outputText value="#{produto.preco}">
+												<f:convertNumber type="currency" currencySymbol="R$"/>
+											</h:outputText>
+										</p:column>
+										<p:column style="width: 60px">
+											<p:button outcome="produtoman" icon="fa  fa-fw  fa-pencil" title="Editar">
+												<f:param name="id" value="#{produto.id}"/>
+											</p:button>
+										</p:column>
+										<p:column style="width: 60px">
+											<p:commandButton title="Excluir" oncomplete="PF('removerproduto').show()" process="@this" update="frm" icon="fa  fa-fw  fa-trash">
+												<f:setPropertyActionListener   value="#{produto}" target="#{produtoConMB.produto}"/>
+											</p:commandButton>
+										</p:column>
+										<f:facet name="footer">
+                               			Total de produto(s) cadastrado(s) #{produtoConMB.produtos.size()}
+                     			 </f:facet>
+									</p:dataTable>
+									<p:dialog header="Deseja excluir produto:" id="removerproduto" widgetVar="removerproduto" width="350" height="100">
+										<div class="Container">
+											<div class="Container100 Responsive50">
+												<div class="ContainerIndent">
+													<div class="Container100">
+														<p:outputLabel id="idNome" value="#{produtoConMB.produto.descricao}"/>
+														<hr/>
+													</div>
+												</div>
+											</div>
+											<div class="Container50 Responsive50">
+												<div class="ContainerIndent">
+													<div class="Container100">
+														<p:button value="Não" onclick="PF('removerproduto').hide(); return false;" />
+													</div>
+												</div>
+											</div>
+											<div class="Container50 Responsive50">
+												<div class="ContainerIndent">
+													<div class="Container100">
+														<p:commandButton value="Sim" action="#{produtoConMB.remove}" update="frm,produto"  onclick="PF('removerproduto').hide()"/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</p:dialog>
+									<div class="EmptyBox20"></div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+		</div>
+	</ui:define>
+</ui:composition>

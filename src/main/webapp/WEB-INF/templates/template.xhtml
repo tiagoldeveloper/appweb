@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+		</f:facet>
+		<title>App web</title>
+		<h:outputScript name="js/layout.js" library="sentinel-layout" />
+		<ui:insert name="head" />
+	</h:head>
+	<h:body>
+		<header class="aw-topbar">
+			<a href="#" class="aw-toggle  js-toggle">
+				<i class="icon-menu yellow i"></i>
+			</a>
+		</header>
+		<aside class="aw-sidebar js-sidebar">
+			<ui:include src="leftmenu.xhtml" />
+		</aside>
+		<section class="aw-content  js-content">
+			<ui:insert name="content" />
+		</section>
+		<h:outputStylesheet library="templates" name="styles/custom.css" />
+		<h:outputStylesheet library="templates" name="styles/layout.css" />
+		<h:outputStylesheet library="templates" name="styles/components.css" />
+		<h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout" />
+		<h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout" />
+		<h:outputStylesheet name="css/core-layout.css" library="sentinel-layout" />
+		<h:outputScript target="body" library="sentinel-layout" name="js/layout.js"  />
+		<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+		<h:outputScript target="body" library="templates" name="javascripts/app.js" />
+		<h:outputScript target="body" library="templates" name="javascripts/jquery.mask.js" />
+		<h:outputScript target="body" library="templates" name="javascripts/jquery.mask.min.js" />
+	</h:body>
+</html>

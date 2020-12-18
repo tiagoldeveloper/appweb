@@ -1,0 +1,121 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+    template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="content">
+		<p:fieldset legend="Cadastrar pessoas" id="fildcliente" style="margin-top: 60px">
+			<h:form id="frm">
+				<div class="ContainerIndent ui-fluid">
+					<div class="ContainerIndent">
+						<p:messages id="msg" />
+					</div>
+					<div class="Container">
+						<div class="Container60 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="nome" value="Nome"/>
+									<p:inputText id="nome" title="Nome" value="#{pessoaManMB.pessoa.nome}" styleClass="FontBold Fs18 hardblue" required="true" requiredMessage="Informe o nome."/>
+								</div>
+							</div>
+						</div>
+						<div class="Container20 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="tipopessoa" value="Tipo de pessoa"/>
+									<p:selectOneMenu id="tipopessoa" onchange="trocouTipoPessoa();" value="#{pessoaManMB.tipoPessoa}" required="true" requiredMessage="Informe o tipo de cliente." styleClass="FontBold Fs18 hardblue">
+										<f:selectItem itemValue="PESSOAFISICA" itemLabel="Pessoa física" />
+										<f:selectItem itemValue="PESSOAJURIDICA" itemLabel="Pessoa jurídica" />
+									</p:selectOneMenu>
+								</div>
+							</div>
+						</div>
+						<div class="Container20 Responsive50" id="cpf">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="cpf" value="CPF"/>
+									<p:inputMask id="cpf" title="Cpf" mask="999.999.999-99" value="#{pessoaManMB.pessoa.cpf}" styleClass="FontBold Fs18 hardblue"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container20 Responsive50" id="cnpj">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="cnpj" value="CNPJ"/>
+									<p:inputMask id="cnpj" title="CNPJ" mask="99.999.999/9999-99" value="#{pessoaManMB.pessoa.cnpj}" styleClass="FontBold Fs18 hardblue"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="Container">
+						<div class="Container20 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="fone" value="Telefone"/>
+									<p:inputMask title="Telefone" mask="(99) 99999-9999" value="#{pessoaManMB.pessoa.telefone}" styleClass="FontBold Fs18 hardblue" id="fone"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container20 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="celular" value="Celular"/>
+									<p:inputMask title="Celular" mask="(99) 99999-9999" value="#{pessoaManMB.pessoa.celular}" styleClass="FontBold Fs18 hardblue" id="celular"/>
+								</div>
+							</div>
+						</div>
+						<div class="Container60 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:outputLabel for="email" value="Email"/>
+									<p:inputText title="Email" value="#{pessoaManMB.pessoa.email}" styleClass="FontBold Fs18 hardblue" id="email"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="EmptyBox20"></div>
+					<div class="Container">
+						<div class="Container20 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:commandButton title="Registrar" value="Registrar" id="botaoSalvar" update="frm, frm:tipopessoa" action="#{pessoaManMB.grava}" />
+								</div>
+							</div>
+						</div>
+						<div class="Container20 Responsive50">
+							<div class="ContainerIndent">
+								<div class="Container100">
+									<p:commandButton value="Cancelar" update="frm, fildcliente" onclick="trocouTipoPessoa();" process="@this" action="#{pessoaManMB.novaInstacia}"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="EmptyBox20"></div>
+				</div>
+				<script type="text/javascript">
+					
+				$(document).ready(function() {
+					trocouTipoPessoa();
+				});
+				
+				   function trocouTipoPessoa(){
+						var tipocliente = document.getElementById("frm:tipopessoa_input").value;
+						$("#cnpj").hide();
+						if(tipocliente == 'PESSOAFISICA'){
+							$("#cnpj").hide();
+							$("#cpf").show();	
+						}else if(tipocliente == 'PESSOAJURIDICA'){
+							$("#cnpj").show();
+							$("#cpf").hide();
+						}else{
+							$("#cpf").show();
+						}
+					}
+				</script>
+			</h:form>
+		</p:fieldset>
+	</ui:define>
+</ui:composition>

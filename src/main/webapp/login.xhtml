@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>TL | SYSTEMS</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<h:outputScript name="js/login.js" library="sentinel-layout" />
+		<h:outputStylesheet library="sentinel-layout" name="css/font-icon-layout.css"  />
+		<h:outputStylesheet library="sentinel-layout" name="css/sentinel-layout.css"  />
+		<h:outputStylesheet library="sentinel-layout" name="css/core-layout.css"  />
+	</h:head>
+	<h:body class="fontRegular">
+		<h:form>
+			<div class="Container">
+				<div class="Container80 Fnone MarAuto TexAlCenter PaddingTopPercent10" >
+					<a href="" id="login-logo">
+						<span class="Fs30 FontTitilliumSemiBoldItalic Fleft"></span>
+						<span class="hardblue">TL - SYSTEMS</span>
+					</a>
+				</div>
+				<div class="Container100 MaxWid500 white-back Fnone MarAuto" id="login-box">
+					<div class="Container100 TexAlCenter Animated05 TabBtn">
+						<div class="Container100 Fnone MarAuto FontBold">
+							<i class="icon-lock"></i> Login
+							
+						
+						</div>
+					</div>
+					<div class="Container100 Responsive100 TexAlCenter Animated05">
+						<div class="ContainerIndent">
+							<div class="Container100">
+								<p:messages id="msg" closable="false" styleClass="Container100"/>
+							</div>
+						</div>
+					</div>
+					<div class="Container100 Responsive100 TexAlCenter Animated05 BoxSizeBorder left">
+						<div class="ContainerIndent">
+							<div class="Container100">
+								<p:inputText value="#{usuarioMB.usuario.nome}" placeholder="Usuário" styleClass="Container100 Fnone MarAuto Fs18"/>
+							</div>
+						</div>
+					</div>
+					<div class="Container100 Responsive100 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft">
+						<div class="ContainerIndent">
+							<div class="Container100">
+								<p:password value="#{usuarioMB.usuario.senha}" placeholder="Senha" styleClass="Container100 Fnone MarAuto Fs18"/>
+							</div>
+						</div>
+					</div>
+					<div class="Container100 Responsive100 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft">
+						<div class="ContainerIndent">
+							<div class="Container100">
+								<p:commandButton value="Logar"  action="#{usuarioMB.logar}" styleClass="Fs16" update="@form"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</h:body>
+</html>

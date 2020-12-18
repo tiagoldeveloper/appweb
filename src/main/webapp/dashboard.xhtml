@@ -1,0 +1,70 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="content">
+		<div class="Container100">
+			<div class="ContainerIndent">
+				<div class="EmptyBox20"></div>
+				<div class="Container25 Responsive">
+					<div class="ContainerIndent">
+						<p:panel id="produtos" header="Produtos" style="min-height: 300px;">
+							<i class="icon-doc-text Fs50 Fleft Wid25 hardblue TexAlCenter"></i>
+							<div class="Fs24 Fright MarTop10 leaden Wid70">
+								<span class="hardblue">Total de Produtos</span>, Cadastrados
+							</div>
+							<div class="Fs12 Fright leaden Wid70">Total de produtos cadastrados (500)</div>
+							<div class="EmptyBox10"></div>
+							<p:separator styleClass="Wid100"></p:separator>
+							<div class="EmptyBox10"></div>
+							<div class="Fs16 Fright">
+								<a href="#" class="DispInlBlock Fleft Fs16 MarRight20">
+									<i class="icon-briefcase hardblue">Quantidade total em estoque (32)</i>
+								</a>
+								<a href="#" class="DispInlBlock Fleft Fs16 MarRight20">
+									<i class="icon-bell-alt hardblue">Valor total em estoque (2.500,50)</i>
+								</a>
+							</div>
+							<div class="EmptyBox10"></div>
+							<p:separator styleClass="Wid100"></p:separator>
+						</p:panel>
+					</div>
+				</div>
+				<div class="Container25 Responsive">
+					<div class="ContainerIndent">
+						<p:panel style="min-height: 300px;" header="Pessoas">
+							<div class="Container">
+								<i class="icon-user-2 Fs50 Fleft Wid25 orange TexAlCenter"></i>
+								<div class="Fs24 Fright MarTop10 leaden Wid70">Pessoas</div>
+								<div class="Fs12 Fright leaden Wid70">2500</div>
+								<div class="EmptyBox10"></div>
+								<p:separator styleClass="Wid100"></p:separator>
+								<div class="EmptyBox10"></div>
+								<div class="Fs12 Fright leaden Wid50 TexAlCenter Responsive">Inativa
+									<br/>
+									<span class="Fs24 red">13.760</span>
+								</div>
+								<div class="Fs12 Fright leaden Wid50 TexAlCenter Responsive">Ativa
+									<br/>
+									<span class="Fs24  orange ">2.280</span>
+								</div>
+								<div class="Fs12 Fright leaden Wid100 TexAlCenter">Total
+									<br/>
+									<span class="Fs24 hardblue">134</span>
+								</div>
+								<div class="EmptyBox10"></div>
+								<p:separator styleClass="Wid100"></p:separator>
+								<a href="#" class="DispInlBlock Fs14 Fright MarRight10">
+									<i class="icon-doc-1 orange"> Relatórios</i>
+								</a>
+							</div>
+						</p:panel>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

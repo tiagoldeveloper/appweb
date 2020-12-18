@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+		</f:facet>
+		<title>Selecione uma pessoa</title>
+	</h:head>
+	<h:body onload="putFocus(0,0);">
+		<div class="ContainerIndent ui-fluid">
+			<p:panel>
+				<div class="ContainerIndent">
+					<h:form id="frmpesquisa">
+						<p:toolbar>
+							<p:toolbarGroup>
+								<p:inputText tabindex="1" onfocus="true" id="nome" size="60" value="#{veiculoConMB.pesquisa}" placeholder="informe o nome" />
+								<p:spacer width="10px"/>
+								<p:commandButton value="Pesquisar" action="#{veiculoConMB.pessoasSelecionadas}" update="frm" />
+							</p:toolbarGroup>
+						</p:toolbar>
+					</h:form>
+					<h:form id="frm">
+						<p:dataTable value="#{veiculoConMB.pessoasFiltradas}" var="pessoa"
+                                emptyMessage="Nenhuma pessoa encontrado." rows="10"
+                                paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+							<p:column headerText="Código" sortBy="#{pessoa.id}" style="width: 70px">
+								<h:outputText value="#{pessoa.id}" />
+							</p:column>
+							<p:column headerText="Nome" sortBy="#{pessoa.nome}">
+								<h:outputText value="#{pessoa.nome}" />
+							</p:column>
+							<p:column style="width: 30px; text-align: center">
+								<p:commandButton tabindex="2" icon="ui-icon-check" title="Selecionar"
+                                    action="#{veiculoConMB.selecionar(pessoa)}"
+                                    process="@this" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+			</p:panel>
+		</div>
+		<h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout" />
+		<h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout" />
+		<h:outputStylesheet name="css/core-layout.css" library="sentinel-layout" />
+		<h:outputScript target="body" library="sentinel-layout" name="js/conversorData.js" />
+		<h:outputScript target="body" library="sentinel-layout" name="js/jquery.mask.js" />
+		<h:outputScript target="body" library="sentinel-layout" name="js/jquery.mask.min.js" />
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("#nome").focus();
+		});
+	</script>
+	</h:body>
+</html>
